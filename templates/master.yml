@@ -1,0 +1,30 @@
+# Creating master node for hadoop cluster
+#
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+        name: master
+        # namespace: {{ .values.namespace }}
+
+spec: 
+  selector:
+          matchLabels:
+                  name: master
+  template:
+          metadata:
+                  name: master-pod
+                  labels:
+                          name: master
+          spec:
+            # here you can provide your node name in node selector here i have given master      
+            nodeSelector:
+                  {{ .values.keyMaster }}: {{ .values.valueMaster }}
+            containers:
+            - name: "worker-container"
+              image: prabal03/master              
+
+
+
+
