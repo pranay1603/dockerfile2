@@ -6,7 +6,8 @@ kind: Deployment
 
 metadata:
         name: master
-        # namespace: {{ .values.namespace }}
+        namespace: {{ .Values.namespace }}
+
 
 spec: 
   selector:
@@ -20,7 +21,8 @@ spec:
           spec:
             # here you can provide your node name in node selector here i have given master      
             nodeSelector:
-                  {{ .values.keyMaster }}: {{ .values.valueMaster }}
+                    {{ .Values.keyworker }}: {{ .Values.valueworker }}   
+
             containers:
             - name: "worker-container"
               image: prabal03/master              

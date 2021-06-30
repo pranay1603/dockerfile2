@@ -1,23 +1,12 @@
-# creating a namespace for our infrastrucre 
-#
-#apiVersion: v1
-
-#kind: Namespace
-
-#metadata:
-# name: {{ .values.namespace }}
-
-
--------------------------------------------------------
-# Creating service for exposing master node 
-#
+# Creating service for exposing master node #
 apiVersion: v1
 
 kind: Service
 
 metadata:
         name: master-service
-        #namespace: {{ .values.namespace }} 
+        namespace: {{ .Values.namespace }}
+
 
 spec:
    selector:

@@ -1,18 +1,15 @@
-# Enter your master node ip address to connect 
-IP: 34.201.2.42
+#Enter the IP of master node to connect with
+IP: 3.231.102.142
+
+#Enter the namespace in which you want to create your infrastrucre
+namespace: hadoop
 
 
-# Enter your namespace name where you want to create all your infrastrucre
-#namespace: hadoop
+#Enter the labels for nodeSelector in key value pair for master node
+keymaster: name
+valuemaster: master
 
-# Enter the node label name 
-# key: value
-keyMaster: name
-valueMaster: master
 
-# Enter the node label name for datanode
-#key: value
-keyDatanode: name
-valueDatanode: worker
-
-  
+#Enter the labels for nodeselector in key value pair for worker node
+keyworker: name
+valueworker: worker
