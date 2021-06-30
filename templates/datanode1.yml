@@ -1,0 +1,39 @@
+#Creating Datanode for hadoop cluster 
+#
+
+apiVersion: apps/v1
+
+kind: DaemonSet
+
+metadata: 
+   name: datanode
+   namespace: {{ .Values.namespace }}
+
+spec:
+    selector:
+            matchLabels:
+                    name: datanode
+    template:
+            metadata:
+                    name: datanode
+                    labels:
+                            name: datanode
+            spec:
+                    nodeSelector:
+                            {{ .Values.keymaster }}: {{ .Values.valuemaster }}
+                    containers:        
+                    - name: "datanode-cont"
+                      image: pranay1603/datanode:v2
+                      env:
+                      - name: IP
+                        value: {{ .Values.IP }}
+                      # master is open at fixed port 31000
+                      - name: PORT
+                        value: "31000" 
+
+
+
+
+
+
+
