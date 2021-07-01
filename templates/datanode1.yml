@@ -20,10 +20,27 @@ spec:
                             name: datanode
             spec:
                     nodeSelector:
-                            {{ .Values.keymaster }}: {{ .Values.valuemaster }}
+                            {{ .Values.keyworker }}: {{ .Values.valueworker }}
+                    volumes:
+                    - name: task-pv-storage
+                      persistentVolumeClaim:
+                           claimName: mypvc
                     containers:        
                     - name: "datanode-cont"
                       image: pranay1603/datanode:v2
+                      volumeMounts:
+                      - mountPath: "/data"
+                        name: task-pv-storage
+                      readinessProbe:
+                                initialDelaySeconds: 1
+                                periodSeconds: 5
+                                timeoutSeconds: 1
+                                successThreshold: 1
+                                failureThreshold: 1
+                                tcpSocket:
+                                    host:
+                                    port: 50010
+
                       env:
                       - name: IP
                         value: {{ .Values.IP }}

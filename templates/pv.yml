@@ -1,0 +1,16 @@
+apiVersion: v1
+
+kind: PersitentVolume
+
+metadata:
+        name: mypv
+
+spec:
+        storageClassName:
+        capacity:
+                storage: 10Gi
+        accessModes:
+                - ReadWriteOnce
+        hostPath:
+                path: "/mydata"      
+

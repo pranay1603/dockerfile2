@@ -21,12 +21,20 @@ spec:
           spec:
             # here you can provide your node name in node selector here i have given master      
             nodeSelector:
-                    {{ .Values.keyworker }}: {{ .Values.valueworker }}   
+                    {{ .Values.keymaster }}: {{ .Values.valuemaster }}   
 
             containers:
-            - name: "worker-container"
+            - name: "master-container"
               image: prabal03/master              
-
-
+              readinessProbe:
+                     initialDelaySeconds: 1
+                     periodSeconds: 5
+                     timeoutSeconds: 1
+                     successThreshold: 1
+                     failureThreshold: 1
+                     tcpSocket:
+                         host:
+                         port: 9001
+                 
 
 
